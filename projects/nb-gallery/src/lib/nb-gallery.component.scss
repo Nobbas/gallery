@@ -1,0 +1,69 @@
+:host {
+    display: inline-block;
+
+    & > * {
+        float: left;
+    }
+
+    /deep/ {
+
+        * {
+            box-sizing: border-box;
+        }
+
+        .nb-gallery-icon {
+            color: white;
+            font-size: 25px;
+            position: absolute;
+            z-index: 2000;
+            display: inline-block;
+
+            .nb-gallery-icon-content {
+                display: block;
+            }
+        }
+
+        .nb-gallery-clickable {
+            cursor: pointer;
+        }
+
+        .nb-gallery-icons-wrapper .nb-gallery-icon {
+            position: relative;
+            margin-right: 5px;
+            margin-top: 5px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .nb-gallery-icons-wrapper {
+            float: right;
+        }
+    }
+
+    .nb-gallery-layout {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .nb-gallery-layout.thumbnails-top {
+        nb-gallery-image {
+            order: 2;
+        }
+
+        nb-gallery-thumbnails {
+            order: 1;
+        }
+    }
+
+    .nb-gallery-layout.thumbnails-bottom {
+        nb-gallery-image {
+            order: 1;
+        }
+
+        nb-gallery-thumbnails {
+            order: 2;
+        }
+    }
+}

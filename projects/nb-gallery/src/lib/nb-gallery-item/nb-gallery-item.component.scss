@@ -1,0 +1,105 @@
+:host {
+    width: 100%;
+    display: inline-block;
+    position: relative;
+}
+
+.nb-gallery-item-wrapper {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    overflow: hidden;
+}
+
+.nb-gallery-item, .nb-gallery-item-image {
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0px;
+
+    &.nb-gallery-active {
+        z-index: 1000;
+    }
+}
+
+.nb-gallery-item-size-cover .nb-gallery-item .nb-gallery-item-image {
+    background-size: cover;
+}
+
+.nb-gallery-item-size-contain .nb-gallery-item .nb-gallery-item-image {
+    background-size: contain;
+}
+
+.nb-gallery-animation-fade {
+    .nb-gallery-item {
+        left: 0px;
+        opacity: 0;
+        transition: 0.5s ease-in-out;
+
+        &.nb-gallery-active {
+            opacity: 1;
+        }
+    }
+}
+
+.nb-gallery-animation-slide {
+    .nb-gallery-item {
+        transition: 0.5s ease-in-out;
+
+        &.nb-gallery-active {
+            left: 0px;
+        }
+
+        &.nb-gallery-inactive-left {
+            left: -100%;
+        }
+
+        &.nb-gallery-inactive-right {
+            left: 100%;
+        }
+    }
+}
+
+.nb-gallery-animation-rotate {
+    .nb-gallery-item {
+        transition: 1s ease;
+        transform: scale(3.5, 3.5) rotate(90deg);
+        left: 0px;
+        opacity: 0;
+
+        &.nb-gallery-active {
+            transform: scale(1, 1) rotate(0deg);
+            opacity: 1;
+        }
+    }
+}
+
+.nb-gallery-animation-zoom {
+    .nb-gallery-item {
+        transition: 1s ease;
+        transform: scale(2.5, 2.5);
+        left: 0px;
+        opacity: 0;
+
+        &.nb-gallery-active {
+            transform: scale(1, 1);
+            opacity: 1;
+        }
+    }
+}
+
+.nb-gallery-item-text {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 10px;
+    text-align: center;
+    color: white;
+    font-size: 16px;
+    position: absolute;
+    bottom: 0px;
+    z-index: 10;
+}

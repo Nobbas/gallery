@@ -1,0 +1,121 @@
+:host(.nb-gallery-active) {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 10000;
+    display: inline-block;
+}
+
+:host {
+    display: none;
+
+    /deep/ .nb-gallery-arrow {
+        font-size: 50px;
+    }
+
+    /deep/ nb-gallery-bullets {
+        height: 5%;
+        align-items: center;
+        padding: 0px;
+    }
+}
+
+.nb-gallery-preview-video {
+    max-width: 90%;
+    max-height: 90%;
+}
+.nb-gallery-preview-img {
+    opacity: 0;
+    max-width: 90%;
+    max-height: 90%;
+    user-select: none;
+    transition: transform .5s;
+
+    &.animation {
+        transition: opacity 0.5s linear, transform .5s;
+    }
+
+    &.nb-gallery-active {
+        opacity: 1;
+    }
+
+    &.nb-gallery-grab {
+        cursor: grab;
+        cursor: -webkit-grab;
+    }
+}
+
+.nb-gallery-icon.nb-gallery-spinner {
+    font-size: 50px;
+    left: 0;
+    display: inline-block;
+}
+
+:host /deep/ .nb-gallery-preview-top {
+    position: absolute;
+    width: 100%;
+    user-select: none;
+}
+
+:host /deep/ .nb-gallery-preview-icons {
+    float: right;
+
+    .nb-gallery-icon {
+        position: relative;
+        margin-right: 10px;
+        margin-top: 10px;
+        font-size: 25px;
+        cursor: pointer;
+        text-decoration: none;
+
+        &.nb-gallery-icon-disabled {
+            cursor: default;
+            opacity: 0.4;
+        }
+    }
+}
+
+.nb-spinner-wrapper {
+    width: 50px;
+    height: 50px;
+    display: none;
+
+    &.nb-gallery-active {
+        display: inline-block;
+    }
+}
+
+.nb-gallery-center {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    top: 0;
+}
+
+.nb-gallery-preview-text {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 10px;
+    text-align: center;
+    color: white;
+    font-size: 16px;
+    flex: 0 1 auto;
+    z-index: 10;
+}
+
+.nb-gallery-preview-wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+}
+
+.nb-gallery-preview-img-wrapper {
+    flex: 1 1 auto;
+    position: relative;
+}
