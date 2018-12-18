@@ -33,3 +33,5 @@ Desktop.ini
 src/*
 projects/*
 build/*
+e2e/*
+angular.json
