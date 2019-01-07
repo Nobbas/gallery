@@ -375,14 +375,13 @@ export class NbGalleryPreviewComponent implements OnChanges {
     private closeFullscreen(): void {
 
         const doc = <any>document;
-
-        if (doc.exitFullscreen) {
+        if (doc.fullscreenElement) {
             doc.exitFullscreen();
-        } else if (doc.msExitFullscreen) {
+        } else if (doc.msFullscreenElement) {
             doc.msExitFullscreen();
         } else if (doc.mozCancelFullScreen) {
-            doc.mozCancelFullScreen();
-        } else if (doc.webkitExitFullscreen) {
+            doc.mozFullScreenElement();
+        } else if (doc.webkitFullscreenElement) {
             doc.webkitExitFullscreen();
         }
     }
@@ -404,10 +403,8 @@ export class NbGalleryPreviewComponent implements OnChanges {
         this.zoomValue = 1;
         this.rotateValue = 0;
         this.resetPosition();
-        console.log(this.items);
         this.src = this.items[this.index].type === 'image' ? this.getSafeUrl(<string>this.items[this.index].url) : undefined;
         this.item = this.items[this.index];
-        console.log(this.item);
         this.srcIndex = this.index;
         this.description = this.descriptions[this.index];
         this.changeDetectorRef.markForCheck();
