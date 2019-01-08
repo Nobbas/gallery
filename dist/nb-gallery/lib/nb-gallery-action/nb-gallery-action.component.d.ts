@@ -1,6 +1,6 @@
 import { EventEmitter } from '@angular/core';
 export declare class NbGalleryActionComponent {
-    icon: string;
+    icon: string[];
     disabled: boolean;
     titleText: string;
     onClick: EventEmitter<Event>;

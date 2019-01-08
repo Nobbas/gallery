@@ -163,7 +163,6 @@ export class NbGalleryComponent implements OnInit, DoCheck, AfterViewInit   {
           this.previewEnabled = true;
           this.preview.open(index);
       }
-      console.log(index);
   }
 
   onPreviewOpen(): void {

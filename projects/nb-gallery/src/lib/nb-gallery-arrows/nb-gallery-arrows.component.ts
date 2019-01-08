@@ -5,12 +5,12 @@ import { Component, Input, Output, EventEmitter, } from '@angular/core';
     template: `
         <div class="nb-gallery-arrow-wrapper nb-gallery-arrow-left">
             <div class="nb-gallery-icon nb-gallery-arrow" aria-hidden="true" (click)="handlePrevClick()" [class.nb-gallery-disabled]="prevDisabled">
-                <i class="nb-gallery-icon-content {{arrowPrevIcon}}"></i>
+                <fa-icon class="nb-gallery-icon-content" [icon]="arrowPrevIcon"></fa-icon>
             </div>
         </div>
         <div class="nb-gallery-arrow-wrapper nb-gallery-arrow-right">
             <div class="nb-gallery-icon nb-gallery-arrow" aria-hidden="true" (click)="handleNextClick()" [class.nb-gallery-disabled]="nextDisabled">
-                <i class="nb-gallery-icon-content {{arrowNextIcon}}"></i>
+                <fa-icon class="nb-gallery-icon-content" [icon]="arrowNextIcon"></fa-icon>
             </div>
         </div>
     `,

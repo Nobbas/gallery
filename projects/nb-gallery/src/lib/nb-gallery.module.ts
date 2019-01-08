@@ -12,6 +12,7 @@ import { NbGalleryTagComponent } from './nb-gallery-video/nb-gallery-tag.compone
 import { NbGalleryThumbnailsComponent } from './nb-gallery-thumbnails/nb-gallery-thumbnails.component';
 import { NbGalleryPreviewComponent } from './nb-gallery-preview/nb-gallery-preview.component';
 import { NbGalleryComponent } from './nb-gallery.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 export * from './nb-gallery.component';
 export * from './nb-gallery-action/nb-gallery-action.component';
@@ -42,7 +43,8 @@ export class CustomHammerConfig extends HammerGestureConfig  {
 
 @NgModule({
   imports: [
-      CommonModule
+      CommonModule,
+      FontAwesomeModule
   ],
   declarations: [
       NbGalleryActionComponent,

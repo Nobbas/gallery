@@ -1,9 +1,31 @@
 {
   "name": "nb-gallery",
-  "version": "0.0.1",
+  "version": "0.0.2",
+  "description": "Responsive Angular 6 image and video gallery plugin",
   "peerDependencies": {
     "@angular/common": "^6.0.0-rc.0 || ^6.0.0",
-    "@angular/core": "^6.0.0-rc.0 || ^6.0.0"
+    "@angular/core": "^6.0.0-rc.0 || ^6.0.0",
+    "@fortawesome/angular-fontawesome": "^0.3.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Nobbas/gallery.git"
+  },
+  "author": {
+    "name": "Nobbas Inc."
+  },
+  "keywords": [
+    "angular",
+    "angular6",
+    "gallery",
+    "image",
+    "videos",
+    "thumbnails",
+    "responsive",
+    "preview"
+  ],
+  "bugs": {
+    "url": "https://github.com/Nobbas/gallery/issues"
   },
   "main": "bundles/nb-gallery.umd.js",
   "module": "fesm5/nb-gallery.js",

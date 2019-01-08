@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NbGalleryOptions, NbGalleryItem, NbGalleryAnimation } from 'nb-gallery';
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -8,6 +9,7 @@ import { NbGalleryOptions, NbGalleryItem, NbGalleryAnimation } from 'nb-gallery'
 })
 export class AppComponent implements OnInit {
   title = 'gallery';
+  iconss = ['fas', 'arrow-circle-left'];
   galleryOptions: NbGalleryOptions[];
   galleryItems: NbGalleryItem[];
 
@@ -18,21 +20,39 @@ export class AppComponent implements OnInit {
         height: "32.065rem",
         thumbnailsColumns: 4,
         itemAnimation: NbGalleryAnimation.Slide,
-        itemSize: 'contain',
         itemPercent: 80,
         thumbnailsPercent: 20,
         thumbnailsMargin: 1,
         thumbnailMargin: 1,
         preview: true,
-        itemArrowsAutoHide: true,
+        // itemArrowsAutoHide: true,
         itemSwipe: true,
-        thumbnailsArrowsAutoHide: true,
+        // thumbnailsArrowsAutoHide: true,
         previewSwipe: true,
         previewCloseOnEsc: true,
         previewKeyboardNavigation: true,
+        // arrowPrevIcon: ['fa', 'caret-left'],
+        // arrowNextIcon: ['fa', 'caret-right'],
+        // closeIcon: ['fas', 'times'],
         lazyLoading: true,
         previewCloseOnClick: true,
-        defaultVideoThumbnnailUrl: '../assets/images/video-thumb.jpeg'
+        defaultVideoThumbnnailUrl: "/assets/video-thumb.jpeg",
+        previewZoom: true,
+        previewFullscreen: true,
+        previewForceFullscreen: true,
+        previewAutoPlay: true,
+        previewInfinityMove: true,
+        fullWidth: true,
+        itemAutoPlay: true,
+        itemAutoPlayPauseOnHover: true,
+        itemInfinityMove: true,
+        itemBullets: true,
+        thumbnailsSwipe: true,
+        thumbnailsRemainingCount: true,
+        previewAutoPlayPauseOnHover: true,
+        previewRotate: true,
+        previewDownload: true,
+        previewBullets: true
       },
       // max-width 1199
       {
@@ -41,9 +61,7 @@ export class AppComponent implements OnInit {
         height: "32rem",
         thumbnails: false,
         itemArrowsAutoHide: false,
-        itemArrows: true,
-        previewSwipe: true,
-        itemSwipe: true,
+        itemArrows: true
       },
       // max-width 768
       {

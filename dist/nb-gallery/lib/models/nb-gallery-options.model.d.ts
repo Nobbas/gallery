@@ -61,16 +61,16 @@ export interface INbGalleryOptions {
     previewDownload?: boolean;
     previewCustom?: (index: number) => void;
     previewBullets?: boolean;
-    arrowPrevIcon?: string;
-    arrowNextIcon?: string;
-    closeIcon?: string;
-    fullscreenIcon?: string;
-    spinnerIcon?: string;
-    zoomInIcon?: string;
-    zoomOutIcon?: string;
-    rotateLeftIcon?: string;
-    rotateRightIcon?: string;
-    downloadIcon?: string;
+    arrowPrevIcon?: string[];
+    arrowNextIcon?: string[];
+    closeIcon?: string[];
+    fullscreenIcon?: string[];
+    spinnerIcon?: string[];
+    zoomInIcon?: string[];
+    zoomOutIcon?: string[];
+    rotateLeftIcon?: string[];
+    rotateRightIcon?: string[];
+    downloadIcon?: string[];
     actions?: NbGalleryAction[];
 }
 export declare class NbGalleryOptions implements INbGalleryOptions {
@@ -134,16 +134,16 @@ export declare class NbGalleryOptions implements INbGalleryOptions {
     previewDownload?: boolean;
     previewCustom?: (index: number) => void;
     previewBullets?: boolean;
-    arrowPrevIcon?: string;
-    arrowNextIcon?: string;
-    closeIcon?: string;
-    fullscreenIcon?: string;
-    spinnerIcon?: string;
-    zoomInIcon?: string;
-    zoomOutIcon?: string;
-    rotateLeftIcon?: string;
-    rotateRightIcon?: string;
-    downloadIcon?: string;
+    arrowPrevIcon?: string[];
+    arrowNextIcon?: string[];
+    closeIcon?: string[];
+    fullscreenIcon?: string[];
+    spinnerIcon?: string[];
+    zoomInIcon?: string[];
+    zoomOutIcon?: string[];
+    rotateLeftIcon?: string[];
+    rotateRightIcon?: string[];
+    downloadIcon?: string[];
     actions?: NbGalleryAction[];
     constructor(obj: INbGalleryOptions);
 }

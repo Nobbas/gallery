@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { DomSanitizer, HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 import { ChangeDetectionStrategy, Component, Input, Output, EventEmitter, Injectable, Renderer, HostListener, ElementRef, ViewChild, ChangeDetectorRef, HostBinding, NgModule } from '@angular/core';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 /**
  * @fileoverview added by tsickle
@@ -32,7 +33,7 @@ NbGalleryActionComponent.decorators = [
             aria-hidden="true"
             title="{{ titleText }}"
             (click)="handleClick($event)">
-                <i class="nb-gallery-icon-content {{ icon }}"></i>
+                <fa-icon class="nb-gallery-icon-content" [icon]="icon"></fa-icon>
         </div>`,
                 changeDetection: ChangeDetectionStrategy.OnPush
             }] }
@@ -72,12 +73,12 @@ NbGalleryArrowsComponent.decorators = [
                 template: `
         <div class="nb-gallery-arrow-wrapper nb-gallery-arrow-left">
             <div class="nb-gallery-icon nb-gallery-arrow" aria-hidden="true" (click)="handlePrevClick()" [class.nb-gallery-disabled]="prevDisabled">
-                <i class="nb-gallery-icon-content {{arrowPrevIcon}}"></i>
+                <fa-icon class="nb-gallery-icon-content" [icon]="arrowPrevIcon"></fa-icon>
             </div>
         </div>
         <div class="nb-gallery-arrow-wrapper nb-gallery-arrow-right">
             <div class="nb-gallery-icon nb-gallery-arrow" aria-hidden="true" (click)="handleNextClick()" [class.nb-gallery-disabled]="nextDisabled">
-                <i class="nb-gallery-icon-content {{arrowNextIcon}}"></i>
+                <fa-icon class="nb-gallery-icon-content" [icon]="arrowNextIcon"></fa-icon>
             </div>
         </div>
     `,
@@ -1417,16 +1418,16 @@ class NbGalleryPreviewComponent {
     closeFullscreen() {
         /** @type {?} */
         const doc = /** @type {?} */ (document);
-        if (doc.exitFullscreen) {
+        if (doc.fullscreenElement) {
             doc.exitFullscreen();
         }
-        else if (doc.msExitFullscreen) {
+        else if (doc.msFullscreenElement) {
             doc.msExitFullscreen();
         }
         else if (doc.mozCancelFullScreen) {
-            doc.mozCancelFullScreen();
+            doc.mozFullScreenElement();
         }
-        else if (doc.webkitExitFullscreen) {
+        else if (doc.webkitFullscreenElement) {
             doc.webkitExitFullscreen();
         }
     }
@@ -1452,10 +1453,8 @@ class NbGalleryPreviewComponent {
         this.zoomValue = 1;
         this.rotateValue = 0;
         this.resetPosition();
-        console.log(this.items);
         this.src = this.items[this.index].type === 'image' ? this.getSafeUrl(/** @type {?} */ (this.items[this.index].url)) : undefined;
         this.item = this.items[this.index];
-        console.log(this.item);
         this.srcIndex = this.index;
         this.description = this.descriptions[this.index];
         this.changeDetectorRef.markForCheck();
@@ -1522,18 +1521,18 @@ NbGalleryPreviewComponent.decorators = [
             <div class="nb-gallery-preview-icons">
                 <nb-gallery-action *ngFor="let action of actions" [icon]="action.icon" [disabled]="action.disabled" [titleText]="action.titleText" (onClick)="action.onClick($event, index)"></nb-gallery-action>
                 <a *ngIf="download && src" [href]="src" class="nb-gallery-icon" aria-hidden="true" download>
-                    <i class="nb-gallery-icon-content {{ downloadIcon }}"></i>
+                    <fa-icon class="nb-gallery-icon-content" [icon]="downloadIcon"></fa-icon>
                 </a>
                 <nb-gallery-action *ngIf="zoom" [icon]="zoomOutIcon" [disabled]="!canZoomOut()" (onClick)="zoomOut()"></nb-gallery-action>
                 <nb-gallery-action *ngIf="zoom" [icon]="zoomInIcon" [disabled]="!canZoomIn()" (onClick)="zoomIn()"></nb-gallery-action>
                 <nb-gallery-action *ngIf="rotate" [icon]="rotateLeftIcon" (onClick)="rotateLeft()"></nb-gallery-action>
                 <nb-gallery-action *ngIf="rotate" [icon]="rotateRightIcon" (onClick)="rotateRight()"></nb-gallery-action>
-                <nb-gallery-action *ngIf="fullscreen" [icon]="'nb-gallery-fullscreen ' + fullscreenIcon" (onClick)="manageFullscreen()"></nb-gallery-action>
-                <nb-gallery-action [icon]="'nb-gallery-close ' + closeIcon" (onClick)="close()"></nb-gallery-action>
+                <nb-gallery-action *ngIf="fullscreen" [icon]="fullscreenIcon" (onClick)="manageFullscreen()"></nb-gallery-action>
+                <nb-gallery-action [icon]="closeIcon" (onClick)="close()"></nb-gallery-action>
             </div>
         </div>
         <div class="nb-spinner-wrapper nb-gallery-center" [class.nb-gallery-active]="showSpinner">
-            <i class="nb-gallery-icon nb-gallery-spinner {{spinnerIcon}}" aria-hidden="true"></i>
+            <fa-icon class="nb-gallery-icon nb-gallery-spinner" [spin]="true" size="xs" [icon]="spinnerIcon"></fa-icon>
         </div>
         <div class="nb-gallery-preview-wrapper" (click)="closeOnClick && close()" (mouseup)="mouseUpHandler($event)" (mousemove)="mouseMoveHandler($event)" (touchend)="mouseUpHandler($event)" (touchmove)="mouseMoveHandler($event)">
             <div class="nb-gallery-preview-img-wrapper">
@@ -1714,16 +1713,16 @@ class NbGalleryOptions {
         this.previewDownload = use(obj.previewDownload, false);
         this.previewCustom = use(obj.previewCustom, undefined);
         this.previewBullets = use(obj.previewBullets, false);
-        this.arrowPrevIcon = use(obj.arrowPrevIcon, 'fa fa-arrow-circle-left');
-        this.arrowNextIcon = use(obj.arrowNextIcon, 'fa fa-arrow-circle-right');
-        this.closeIcon = use(obj.closeIcon, 'fa fa-times-circle');
-        this.fullscreenIcon = use(obj.fullscreenIcon, 'fa fa-arrows-alt');
-        this.spinnerIcon = use(obj.spinnerIcon, 'fa fa-spinner fa-pulse fa-3x fa-fw');
-        this.zoomInIcon = use(obj.zoomInIcon, 'fa fa-search-plus');
-        this.zoomOutIcon = use(obj.zoomOutIcon, 'fa fa-search-minus');
-        this.rotateLeftIcon = use(obj.rotateLeftIcon, 'fa fa-undo');
-        this.rotateRightIcon = use(obj.rotateRightIcon, 'fa fa-repeat');
-        this.downloadIcon = use(obj.downloadIcon, 'fa fa-arrow-circle-down');
+        this.arrowPrevIcon = use(obj.arrowPrevIcon, ['fa', 'arrow-circle-left']);
+        this.arrowNextIcon = use(obj.arrowNextIcon, ['fa', 'arrow-circle-right']);
+        this.closeIcon = use(obj.closeIcon, ['fa', 'times-circle']);
+        this.fullscreenIcon = use(obj.fullscreenIcon, ['fa', 'arrows-alt']);
+        this.spinnerIcon = use(obj.spinnerIcon, ['fa', 'spinner']);
+        this.zoomInIcon = use(obj.zoomInIcon, ['fa', 'search-plus']);
+        this.zoomOutIcon = use(obj.zoomOutIcon, ['fa', 'search-minus']);
+        this.rotateLeftIcon = use(obj.rotateLeftIcon, ['fa', 'undo']);
+        this.rotateRightIcon = use(obj.rotateRightIcon, ['fa', 'redo']);
+        this.downloadIcon = use(obj.downloadIcon, ['fa', 'arrow-circle-down']);
         if (obj && obj.actions && obj.actions.length) {
             obj.actions = obj.actions.map(action => new NbGalleryAction(action));
         }
@@ -1896,7 +1895,6 @@ class NbGalleryComponent {
             this.previewEnabled = true;
             this.preview.open(index);
         }
-        console.log(index);
     }
     /**
      * @return {?}
@@ -2178,7 +2176,8 @@ class NbGalleryModule {
 NbGalleryModule.decorators = [
     { type: NgModule, args: [{
                 imports: [
-                    CommonModule
+                    CommonModule,
+                    FontAwesomeModule
                 ],
                 declarations: [
                     NbGalleryActionComponent,

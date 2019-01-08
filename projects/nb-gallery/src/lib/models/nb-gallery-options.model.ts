@@ -65,16 +65,16 @@ export interface INbGalleryOptions {
     previewDownload?: boolean;
     previewCustom?: (index: number) => void;
     previewBullets?: boolean;
-    arrowPrevIcon?: string;
-    arrowNextIcon?: string;
-    closeIcon?: string;
-    fullscreenIcon?: string;
-    spinnerIcon?: string;
-    zoomInIcon?: string;
-    zoomOutIcon?: string;
-    rotateLeftIcon?: string;
-    rotateRightIcon?: string;
-    downloadIcon?: string;
+    arrowPrevIcon?: string[];
+    arrowNextIcon?: string[];
+    closeIcon?: string[];
+    fullscreenIcon?: string[];
+    spinnerIcon?: string[];
+    zoomInIcon?: string[];
+    zoomOutIcon?: string[];
+    rotateLeftIcon?: string[];
+    rotateRightIcon?: string[];
+    downloadIcon?: string[];
     actions?: NbGalleryAction[];
 }
 
@@ -139,16 +139,16 @@ export class NbGalleryOptions implements INbGalleryOptions {
     previewDownload?: boolean;
     previewCustom?: (index: number) => void;
     previewBullets?: boolean;
-    arrowPrevIcon?: string;
-    arrowNextIcon?: string;
-    closeIcon?: string;
-    fullscreenIcon?: string;
-    spinnerIcon?: string;
-    zoomInIcon?: string;
-    zoomOutIcon?: string;
-    rotateLeftIcon?: string;
-    rotateRightIcon?: string;
-    downloadIcon?: string;
+    arrowPrevIcon?: string[];
+    arrowNextIcon?: string[];
+    closeIcon?: string[];
+    fullscreenIcon?: string[];
+    spinnerIcon?: string[];
+    zoomInIcon?: string[];
+    zoomOutIcon?: string[];
+    rotateLeftIcon?: string[];
+    rotateRightIcon?: string[];
+    downloadIcon?: string[];
     actions?: NbGalleryAction[];
 
     constructor(obj: INbGalleryOptions) {
@@ -229,16 +229,16 @@ export class NbGalleryOptions implements INbGalleryOptions {
         this.previewCustom = use(obj.previewCustom, undefined);
         this.previewBullets = use(obj.previewBullets, false);
 
-        this.arrowPrevIcon = use(obj.arrowPrevIcon, 'fa fa-arrow-circle-left');
-        this.arrowNextIcon = use(obj.arrowNextIcon, 'fa fa-arrow-circle-right');
-        this.closeIcon = use(obj.closeIcon, 'fa fa-times-circle');
-        this.fullscreenIcon = use(obj.fullscreenIcon, 'fa fa-arrows-alt');
-        this.spinnerIcon = use(obj.spinnerIcon, 'fa fa-spinner fa-pulse fa-3x fa-fw');
-        this.zoomInIcon = use(obj.zoomInIcon, 'fa fa-search-plus');
-        this.zoomOutIcon = use(obj.zoomOutIcon, 'fa fa-search-minus');
-        this.rotateLeftIcon = use(obj.rotateLeftIcon, 'fa fa-undo');
-        this.rotateRightIcon = use(obj.rotateRightIcon, 'fa fa-repeat');
-        this.downloadIcon = use(obj.downloadIcon, 'fa fa-arrow-circle-down');
+        this.arrowPrevIcon = use(obj.arrowPrevIcon, ['fa', 'arrow-circle-left']);
+        this.arrowNextIcon = use(obj.arrowNextIcon, ['fa', 'arrow-circle-right']);
+        this.closeIcon = use(obj.closeIcon, ['fa', 'times-circle']);
+        this.fullscreenIcon = use(obj.fullscreenIcon, ['fa', 'arrows-alt']);
+        this.spinnerIcon = use(obj.spinnerIcon, ['fa', 'spinner']);
+        this.zoomInIcon = use(obj.zoomInIcon, ['fa', 'search-plus']);
+        this.zoomOutIcon = use(obj.zoomOutIcon, ['fa', 'search-minus']);
+        this.rotateLeftIcon = use(obj.rotateLeftIcon, ['fa', 'undo']);
+        this.rotateRightIcon = use(obj.rotateRightIcon, ['fa', 'redo']);
+        this.downloadIcon = use(obj.downloadIcon, ['fa', 'arrow-circle-down']);
 
         if (obj && obj.actions && obj.actions.length) {
             obj.actions = obj.actions.map(action => new NbGalleryAction(action));

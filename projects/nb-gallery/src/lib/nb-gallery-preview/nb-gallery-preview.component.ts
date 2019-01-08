@@ -13,18 +13,18 @@ import { NbGalleryOrderedItem } from '../models/nb-gallery-ordered-item.model';
             <div class="nb-gallery-preview-icons">
                 <nb-gallery-action *ngFor="let action of actions" [icon]="action.icon" [disabled]="action.disabled" [titleText]="action.titleText" (onClick)="action.onClick($event, index)"></nb-gallery-action>
                 <a *ngIf="download && src" [href]="src" class="nb-gallery-icon" aria-hidden="true" download>
-                    <i class="nb-gallery-icon-content {{ downloadIcon }}"></i>
+                    <fa-icon class="nb-gallery-icon-content" [icon]="downloadIcon"></fa-icon>
                 </a>
                 <nb-gallery-action *ngIf="zoom" [icon]="zoomOutIcon" [disabled]="!canZoomOut()" (onClick)="zoomOut()"></nb-gallery-action>
                 <nb-gallery-action *ngIf="zoom" [icon]="zoomInIcon" [disabled]="!canZoomIn()" (onClick)="zoomIn()"></nb-gallery-action>
                 <nb-gallery-action *ngIf="rotate" [icon]="rotateLeftIcon" (onClick)="rotateLeft()"></nb-gallery-action>
                 <nb-gallery-action *ngIf="rotate" [icon]="rotateRightIcon" (onClick)="rotateRight()"></nb-gallery-action>
-                <nb-gallery-action *ngIf="fullscreen" [icon]="'nb-gallery-fullscreen ' + fullscreenIcon" (onClick)="manageFullscreen()"></nb-gallery-action>
-                <nb-gallery-action [icon]="'nb-gallery-close ' + closeIcon" (onClick)="close()"></nb-gallery-action>
+                <nb-gallery-action *ngIf="fullscreen" [icon]="fullscreenIcon" (onClick)="manageFullscreen()"></nb-gallery-action>
+                <nb-gallery-action [icon]="closeIcon" (onClick)="close()"></nb-gallery-action>
             </div>
         </div>
         <div class="nb-spinner-wrapper nb-gallery-center" [class.nb-gallery-active]="showSpinner">
-            <i class="nb-gallery-icon nb-gallery-spinner {{spinnerIcon}}" aria-hidden="true"></i>
+            <fa-icon class="nb-gallery-icon nb-gallery-spinner" [spin]="true" size="xs" [icon]="spinnerIcon"></fa-icon>
         </div>
         <div class="nb-gallery-preview-wrapper" (click)="closeOnClick && close()" (mouseup)="mouseUpHandler($event)" (mousemove)="mouseMoveHandler($event)" (touchend)="mouseUpHandler($event)" (touchmove)="mouseMoveHandler($event)">
             <div class="nb-gallery-preview-img-wrapper">

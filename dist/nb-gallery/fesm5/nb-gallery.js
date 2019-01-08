@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { DomSanitizer, HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 import { __extends, __spread } from 'tslib';
 import { ChangeDetectionStrategy, Component, Input, Output, EventEmitter, Injectable, Renderer, HostListener, ElementRef, ViewChild, ChangeDetectorRef, HostBinding, NgModule } from '@angular/core';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 /**
  * @fileoverview added by tsickle
@@ -31,7 +32,7 @@ var NbGalleryActionComponent = /** @class */ (function () {
     NbGalleryActionComponent.decorators = [
         { type: Component, args: [{
                     selector: 'nb-gallery-action',
-                    template: "\n        <div class=\"nb-gallery-icon\" [class.nb-gallery-icon-disabled]=\"disabled\"\n            aria-hidden=\"true\"\n            title=\"{{ titleText }}\"\n            (click)=\"handleClick($event)\">\n                <i class=\"nb-gallery-icon-content {{ icon }}\"></i>\n        </div>",
+                    template: "\n        <div class=\"nb-gallery-icon\" [class.nb-gallery-icon-disabled]=\"disabled\"\n            aria-hidden=\"true\"\n            title=\"{{ titleText }}\"\n            (click)=\"handleClick($event)\">\n                <fa-icon class=\"nb-gallery-icon-content\" [icon]=\"icon\"></fa-icon>\n        </div>",
                     changeDetection: ChangeDetectionStrategy.OnPush
                 }] }
     ];
@@ -74,7 +75,7 @@ var NbGalleryArrowsComponent = /** @class */ (function () {
     NbGalleryArrowsComponent.decorators = [
         { type: Component, args: [{
                     selector: 'nb-gallery-arrows',
-                    template: "\n        <div class=\"nb-gallery-arrow-wrapper nb-gallery-arrow-left\">\n            <div class=\"nb-gallery-icon nb-gallery-arrow\" aria-hidden=\"true\" (click)=\"handlePrevClick()\" [class.nb-gallery-disabled]=\"prevDisabled\">\n                <i class=\"nb-gallery-icon-content {{arrowPrevIcon}}\"></i>\n            </div>\n        </div>\n        <div class=\"nb-gallery-arrow-wrapper nb-gallery-arrow-right\">\n            <div class=\"nb-gallery-icon nb-gallery-arrow\" aria-hidden=\"true\" (click)=\"handleNextClick()\" [class.nb-gallery-disabled]=\"nextDisabled\">\n                <i class=\"nb-gallery-icon-content {{arrowNextIcon}}\"></i>\n            </div>\n        </div>\n    ",
+                    template: "\n        <div class=\"nb-gallery-arrow-wrapper nb-gallery-arrow-left\">\n            <div class=\"nb-gallery-icon nb-gallery-arrow\" aria-hidden=\"true\" (click)=\"handlePrevClick()\" [class.nb-gallery-disabled]=\"prevDisabled\">\n                <fa-icon class=\"nb-gallery-icon-content\" [icon]=\"arrowPrevIcon\"></fa-icon>\n            </div>\n        </div>\n        <div class=\"nb-gallery-arrow-wrapper nb-gallery-arrow-right\">\n            <div class=\"nb-gallery-icon nb-gallery-arrow\" aria-hidden=\"true\" (click)=\"handleNextClick()\" [class.nb-gallery-disabled]=\"nextDisabled\">\n                <fa-icon class=\"nb-gallery-icon-content\" [icon]=\"arrowNextIcon\"></fa-icon>\n            </div>\n        </div>\n    ",
                     styles: [".nb-gallery-arrow-wrapper{position:absolute;height:100%;width:1px;display:table;z-index:2000;table-layout:fixed}.nb-gallery-arrow-left{left:0}.nb-gallery-arrow-right{right:0}.nb-gallery-arrow{top:50%;-webkit-transform:translateY(-50%);transform:translateY(-50%);cursor:pointer}.nb-gallery-arrow.nb-gallery-disabled{opacity:.6;cursor:default}.nb-gallery-arrow-left .nb-gallery-arrow{left:10px}.nb-gallery-arrow-right .nb-gallery-arrow{right:10px}"]
                 }] }
     ];
@@ -1667,16 +1668,16 @@ var NbGalleryPreviewComponent = /** @class */ (function () {
     function () {
         /** @type {?} */
         var doc = /** @type {?} */ (document);
-        if (doc.exitFullscreen) {
+        if (doc.fullscreenElement) {
             doc.exitFullscreen();
         }
-        else if (doc.msExitFullscreen) {
+        else if (doc.msFullscreenElement) {
             doc.msExitFullscreen();
         }
         else if (doc.mozCancelFullScreen) {
-            doc.mozCancelFullScreen();
+            doc.mozFullScreenElement();
         }
-        else if (doc.webkitExitFullscreen) {
+        else if (doc.webkitFullscreenElement) {
             doc.webkitExitFullscreen();
         }
     };
@@ -1712,10 +1713,8 @@ var NbGalleryPreviewComponent = /** @class */ (function () {
         this.zoomValue = 1;
         this.rotateValue = 0;
         this.resetPosition();
-        console.log(this.items);
         this.src = this.items[this.index].type === 'image' ? this.getSafeUrl(/** @type {?} */ (this.items[this.index].url)) : undefined;
         this.item = this.items[this.index];
-        console.log(this.item);
         this.srcIndex = this.index;
         this.description = this.descriptions[this.index];
         this.changeDetectorRef.markForCheck();
@@ -1786,7 +1785,7 @@ var NbGalleryPreviewComponent = /** @class */ (function () {
     NbGalleryPreviewComponent.decorators = [
         { type: Component, args: [{
                     selector: 'nb-gallery-preview',
-                    template: "\n        <nb-gallery-arrows (onPrevClick)=\"showPrev()\" (onNextClick)=\"showNext()\" [prevDisabled]=\"!canShowPrev()\" [nextDisabled]=\"!canShowNext()\" [arrowPrevIcon]=\"arrowPrevIcon\" [arrowNextIcon]=\"arrowNextIcon\"></nb-gallery-arrows>\n        <div class=\"nb-gallery-preview-top\">\n            <div class=\"nb-gallery-preview-icons\">\n                <nb-gallery-action *ngFor=\"let action of actions\" [icon]=\"action.icon\" [disabled]=\"action.disabled\" [titleText]=\"action.titleText\" (onClick)=\"action.onClick($event, index)\"></nb-gallery-action>\n                <a *ngIf=\"download && src\" [href]=\"src\" class=\"nb-gallery-icon\" aria-hidden=\"true\" download>\n                    <i class=\"nb-gallery-icon-content {{ downloadIcon }}\"></i>\n                </a>\n                <nb-gallery-action *ngIf=\"zoom\" [icon]=\"zoomOutIcon\" [disabled]=\"!canZoomOut()\" (onClick)=\"zoomOut()\"></nb-gallery-action>\n                <nb-gallery-action *ngIf=\"zoom\" [icon]=\"zoomInIcon\" [disabled]=\"!canZoomIn()\" (onClick)=\"zoomIn()\"></nb-gallery-action>\n                <nb-gallery-action *ngIf=\"rotate\" [icon]=\"rotateLeftIcon\" (onClick)=\"rotateLeft()\"></nb-gallery-action>\n                <nb-gallery-action *ngIf=\"rotate\" [icon]=\"rotateRightIcon\" (onClick)=\"rotateRight()\"></nb-gallery-action>\n                <nb-gallery-action *ngIf=\"fullscreen\" [icon]=\"'nb-gallery-fullscreen ' + fullscreenIcon\" (onClick)=\"manageFullscreen()\"></nb-gallery-action>\n                <nb-gallery-action [icon]=\"'nb-gallery-close ' + closeIcon\" (onClick)=\"close()\"></nb-gallery-action>\n            </div>\n        </div>\n        <div class=\"nb-spinner-wrapper nb-gallery-center\" [class.nb-gallery-active]=\"showSpinner\">\n            <i class=\"nb-gallery-icon nb-gallery-spinner {{spinnerIcon}}\" aria-hidden=\"true\"></i>\n        </div>\n        <div class=\"nb-gallery-preview-wrapper\" (click)=\"closeOnClick && close()\" (mouseup)=\"mouseUpHandler($event)\" (mousemove)=\"mouseMoveHandler($event)\" (touchend)=\"mouseUpHandler($event)\" (touchmove)=\"mouseMoveHandler($event)\">\n            <div class=\"nb-gallery-preview-img-wrapper\">\n                <img *ngIf=\"src && item && item.type === 'image'\" #previewImage class=\"nb-gallery-preview-img nb-gallery-center\" [src]=\"src\" (click)=\"$event.stopPropagation()\" (mouseenter)=\"imageMouseEnter()\" (mouseleave)=\"imageMouseLeave()\" (mousedown)=\"mouseDownHandler($event)\" (touchstart)=\"mouseDownHandler($event)\" [class.nb-gallery-active]=\"!loading\" [class.animation]=\"animation\" [class.nb-gallery-grab]=\"canDragOnZoom()\" [style.transform]=\"getTransform()\" [style.left]=\"positionLeft + 'px'\" [style.top]=\"positionTop + 'px'\"/>\n                <nb-gallery-video *ngIf=\"item && item.type === 'video'\" #previewVideo [videoItem]=\"item\" [pause]=\"index !== srcIndex\" class=\"nb-gallery-preview-video nb-gallery-center\" (click)=\"$event.stopPropagation()\" [class.nb-gallery-active]=\"!loading\" [class.animation]=\"animation\" [class.nb-gallery-grab]=\"canDragOnZoom()\" [style.transform]=\"getTransform()\" [style.left]=\"positionLeft + 'px'\" [style.top]=\"positionTop + 'px'\" ></nb-gallery-video>\n                <nb-gallery-bullets *ngIf=\"bullets\" [count]=\"items.length\" [active]=\"index\" (onChange)=\"showAtIndex($event)\"></nb-gallery-bullets>\n            </div>\n            <div class=\"nb-gallery-preview-text\" *ngIf=\"showDescription && description\" [innerHTML]=\"description\" (click)=\"$event.stopPropagation()\"></div>\n        </div>\n    ",
+                    template: "\n        <nb-gallery-arrows (onPrevClick)=\"showPrev()\" (onNextClick)=\"showNext()\" [prevDisabled]=\"!canShowPrev()\" [nextDisabled]=\"!canShowNext()\" [arrowPrevIcon]=\"arrowPrevIcon\" [arrowNextIcon]=\"arrowNextIcon\"></nb-gallery-arrows>\n        <div class=\"nb-gallery-preview-top\">\n            <div class=\"nb-gallery-preview-icons\">\n                <nb-gallery-action *ngFor=\"let action of actions\" [icon]=\"action.icon\" [disabled]=\"action.disabled\" [titleText]=\"action.titleText\" (onClick)=\"action.onClick($event, index)\"></nb-gallery-action>\n                <a *ngIf=\"download && src\" [href]=\"src\" class=\"nb-gallery-icon\" aria-hidden=\"true\" download>\n                    <fa-icon class=\"nb-gallery-icon-content\" [icon]=\"downloadIcon\"></fa-icon>\n                </a>\n                <nb-gallery-action *ngIf=\"zoom\" [icon]=\"zoomOutIcon\" [disabled]=\"!canZoomOut()\" (onClick)=\"zoomOut()\"></nb-gallery-action>\n                <nb-gallery-action *ngIf=\"zoom\" [icon]=\"zoomInIcon\" [disabled]=\"!canZoomIn()\" (onClick)=\"zoomIn()\"></nb-gallery-action>\n                <nb-gallery-action *ngIf=\"rotate\" [icon]=\"rotateLeftIcon\" (onClick)=\"rotateLeft()\"></nb-gallery-action>\n                <nb-gallery-action *ngIf=\"rotate\" [icon]=\"rotateRightIcon\" (onClick)=\"rotateRight()\"></nb-gallery-action>\n                <nb-gallery-action *ngIf=\"fullscreen\" [icon]=\"fullscreenIcon\" (onClick)=\"manageFullscreen()\"></nb-gallery-action>\n                <nb-gallery-action [icon]=\"closeIcon\" (onClick)=\"close()\"></nb-gallery-action>\n            </div>\n        </div>\n        <div class=\"nb-spinner-wrapper nb-gallery-center\" [class.nb-gallery-active]=\"showSpinner\">\n            <fa-icon class=\"nb-gallery-icon nb-gallery-spinner\" [spin]=\"true\" size=\"xs\" [icon]=\"spinnerIcon\"></fa-icon>\n        </div>\n        <div class=\"nb-gallery-preview-wrapper\" (click)=\"closeOnClick && close()\" (mouseup)=\"mouseUpHandler($event)\" (mousemove)=\"mouseMoveHandler($event)\" (touchend)=\"mouseUpHandler($event)\" (touchmove)=\"mouseMoveHandler($event)\">\n            <div class=\"nb-gallery-preview-img-wrapper\">\n                <img *ngIf=\"src && item && item.type === 'image'\" #previewImage class=\"nb-gallery-preview-img nb-gallery-center\" [src]=\"src\" (click)=\"$event.stopPropagation()\" (mouseenter)=\"imageMouseEnter()\" (mouseleave)=\"imageMouseLeave()\" (mousedown)=\"mouseDownHandler($event)\" (touchstart)=\"mouseDownHandler($event)\" [class.nb-gallery-active]=\"!loading\" [class.animation]=\"animation\" [class.nb-gallery-grab]=\"canDragOnZoom()\" [style.transform]=\"getTransform()\" [style.left]=\"positionLeft + 'px'\" [style.top]=\"positionTop + 'px'\"/>\n                <nb-gallery-video *ngIf=\"item && item.type === 'video'\" #previewVideo [videoItem]=\"item\" [pause]=\"index !== srcIndex\" class=\"nb-gallery-preview-video nb-gallery-center\" (click)=\"$event.stopPropagation()\" [class.nb-gallery-active]=\"!loading\" [class.animation]=\"animation\" [class.nb-gallery-grab]=\"canDragOnZoom()\" [style.transform]=\"getTransform()\" [style.left]=\"positionLeft + 'px'\" [style.top]=\"positionTop + 'px'\" ></nb-gallery-video>\n                <nb-gallery-bullets *ngIf=\"bullets\" [count]=\"items.length\" [active]=\"index\" (onChange)=\"showAtIndex($event)\"></nb-gallery-bullets>\n            </div>\n            <div class=\"nb-gallery-preview-text\" *ngIf=\"showDescription && description\" [innerHTML]=\"description\" (click)=\"$event.stopPropagation()\"></div>\n        </div>\n    ",
                     styles: [":host(.nb-gallery-active){width:100%;height:100%;position:fixed;left:0;top:0;background:rgba(0,0,0,.7);z-index:10000;display:inline-block}:host{display:none}:host /deep/ .nb-gallery-arrow{font-size:50px}:host /deep/ nb-gallery-bullets{height:5%;align-items:center;padding:0}.nb-gallery-preview-video{max-width:90%;max-height:90%}.nb-gallery-preview-img{opacity:0;max-width:90%;max-height:90%;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;transition:transform .5s;transition:transform .5s,-webkit-transform .5s}.nb-gallery-preview-img.animation{transition:opacity .5s linear,transform .5s,-webkit-transform .5s}.nb-gallery-preview-img.nb-gallery-active{opacity:1}.nb-gallery-preview-img.nb-gallery-grab{cursor:grab;cursor:-webkit-grab}.nb-gallery-icon.nb-gallery-spinner{font-size:50px;left:0;display:inline-block}:host /deep/ .nb-gallery-preview-top{position:absolute;width:100%;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}:host /deep/ .nb-gallery-preview-icons{float:right}:host /deep/ .nb-gallery-preview-icons .nb-gallery-icon{position:relative;margin-right:10px;margin-top:10px;font-size:25px;cursor:pointer;text-decoration:none}:host /deep/ .nb-gallery-preview-icons .nb-gallery-icon.nb-gallery-icon-disabled{cursor:default;opacity:.4}.nb-spinner-wrapper{width:50px;height:50px;display:none}.nb-spinner-wrapper.nb-gallery-active{display:inline-block}.nb-gallery-center{position:absolute;left:0;right:0;bottom:0;margin:auto;top:0}.nb-gallery-preview-text{width:100%;background:rgba(0,0,0,.7);padding:10px;text-align:center;color:#fff;font-size:16px;flex:0 1 auto;z-index:10}.nb-gallery-preview-wrapper{width:100%;height:100%;display:flex;flex-flow:column}.nb-gallery-preview-img-wrapper{flex:1 1 auto;position:relative}"]
                 }] }
     ];
@@ -1960,16 +1959,16 @@ var NbGalleryOptions = /** @class */ (function () {
         this.previewDownload = use(obj.previewDownload, false);
         this.previewCustom = use(obj.previewCustom, undefined);
         this.previewBullets = use(obj.previewBullets, false);
-        this.arrowPrevIcon = use(obj.arrowPrevIcon, 'fa fa-arrow-circle-left');
-        this.arrowNextIcon = use(obj.arrowNextIcon, 'fa fa-arrow-circle-right');
-        this.closeIcon = use(obj.closeIcon, 'fa fa-times-circle');
-        this.fullscreenIcon = use(obj.fullscreenIcon, 'fa fa-arrows-alt');
-        this.spinnerIcon = use(obj.spinnerIcon, 'fa fa-spinner fa-pulse fa-3x fa-fw');
-        this.zoomInIcon = use(obj.zoomInIcon, 'fa fa-search-plus');
-        this.zoomOutIcon = use(obj.zoomOutIcon, 'fa fa-search-minus');
-        this.rotateLeftIcon = use(obj.rotateLeftIcon, 'fa fa-undo');
-        this.rotateRightIcon = use(obj.rotateRightIcon, 'fa fa-repeat');
-        this.downloadIcon = use(obj.downloadIcon, 'fa fa-arrow-circle-down');
+        this.arrowPrevIcon = use(obj.arrowPrevIcon, ['fa', 'arrow-circle-left']);
+        this.arrowNextIcon = use(obj.arrowNextIcon, ['fa', 'arrow-circle-right']);
+        this.closeIcon = use(obj.closeIcon, ['fa', 'times-circle']);
+        this.fullscreenIcon = use(obj.fullscreenIcon, ['fa', 'arrows-alt']);
+        this.spinnerIcon = use(obj.spinnerIcon, ['fa', 'spinner']);
+        this.zoomInIcon = use(obj.zoomInIcon, ['fa', 'search-plus']);
+        this.zoomOutIcon = use(obj.zoomOutIcon, ['fa', 'search-minus']);
+        this.rotateLeftIcon = use(obj.rotateLeftIcon, ['fa', 'undo']);
+        this.rotateRightIcon = use(obj.rotateRightIcon, ['fa', 'redo']);
+        this.downloadIcon = use(obj.downloadIcon, ['fa', 'arrow-circle-down']);
         if (obj && obj.actions && obj.actions.length) {
             obj.actions = obj.actions.map(function (action) { return new NbGalleryAction(action); });
         }
@@ -2165,7 +2164,6 @@ var NbGalleryComponent = /** @class */ (function () {
             this.previewEnabled = true;
             this.preview.open(index);
         }
-        console.log(index);
     };
     /**
      * @return {?}
@@ -2516,7 +2514,8 @@ var NbGalleryModule = /** @class */ (function () {
     NbGalleryModule.decorators = [
         { type: NgModule, args: [{
                     imports: [
-                        CommonModule
+                        CommonModule,
+                        FontAwesomeModule
                     ],
                     declarations: [
                         NbGalleryActionComponent,

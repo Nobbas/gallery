@@ -7,12 +7,12 @@ import { ChangeDetectionStrategy, Component, Input, Output, EventEmitter } from 
             aria-hidden="true"
             title="{{ titleText }}"
             (click)="handleClick($event)">
-                <i class="nb-gallery-icon-content {{ icon }}"></i>
+                <fa-icon class="nb-gallery-icon-content" [icon]="icon"></fa-icon>
         </div>`,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NbGalleryActionComponent {
-    @Input() icon: string;
+    @Input() icon: string[];
     @Input() disabled = false;
     @Input() titleText = '';
 
